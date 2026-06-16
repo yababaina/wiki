@@ -2,4 +2,4 @@
 title: ECC
 ---
 
-← [[cryptology]]
+← [[cryptology/]]

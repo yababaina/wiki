@@ -1,3 +1,72 @@
 @use "./variables.scss" as *;
 
 // put your custom CSS here!
+.recent-notes {
+    ul.recent-ul {
+      li {
+        margin: 0.4rem 0;  // 항목 간격 축소
+        font-size: 0.85rem;
+        .section {
+          display: flex;
+          align-items: baseline;
+          gap: 0.4rem;
+          flex-wrap: wrap;
+          .desc > h3 {
+            margin: 0;
+            font-size: 0.9rem;
+            font-weight: normal;
+            display: inline;
+          }
+          .meta {
+            margin: 0;
+            opacity: 0.6;
+            font-size: 0.75rem;
+            display: inline;
+          }
+        }
+      }
+    }
+  }
+
+.page-listing {
+> p {
+    font-size: 0.75rem;
+    opacity: 0.6;
+    margin: 0.5rem 0;
+}
+
+ul.section-ul {
+    margin-top: 0.5rem;
+    padding-left: 0;
+
+    li.section-li {
+    margin-bottom: 0.35rem;
+    font-size: 0.85rem;
+
+    .section {
+        display: flex;         
+        align-items: baseline;
+        gap: 0.4rem;
+        flex-wrap: wrap;
+
+        .desc {
+        order: 1;           
+
+        > h3 {
+            margin: 0;
+            font-size: 0.9rem;
+            font-weight: normal;
+            display: inline;
+        }
+        }
+
+        .meta {
+        order: 2;            
+        margin: 0;
+        opacity: 0.6;
+        font-size: 0.75rem;
+        }
+    }
+    }
+}
+}

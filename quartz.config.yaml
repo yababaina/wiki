@@ -149,7 +149,7 @@ plugins:
   - source: github:quartz-community/content-page
     enabled: true
   - source: github:quartz-community/folder-page
-    enabled: false
+    enabled: true
   - source: github:quartz-community/tag-page
     enabled: true
   - source: github:quartz-community/explorer
@@ -171,7 +171,7 @@ plugins:
       groupOptions:
         grow: true
   - source: github:quartz-community/backlinks
-    enabled: true
+    enabled: false
     layout:
       position: right
       priority: 50
@@ -238,6 +238,7 @@ plugins:
     layout:
       position: afterBody
       priority: 10
+      condition: index-only
   - source: github:quartz-community/spacer
     enabled: true
     options: {}
