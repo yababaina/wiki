@@ -1,6 +1,7 @@
 ---
-title: Welcome to Quartz
+title: My Wiki
 ---
 
-This is a blank Quartz installation.
-See the [documentation](https://quartz.jzhao.xyz) for how to get started.
+## 카테고리
+
+- [[Cryptology/]]
