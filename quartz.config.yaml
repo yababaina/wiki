@@ -149,7 +149,7 @@ plugins:
   - source: github:quartz-community/content-page
     enabled: true
   - source: github:quartz-community/folder-page
-    enabled: true
+    enabled: false
   - source: github:quartz-community/tag-page
     enabled: true
   - source: github:quartz-community/explorer
@@ -231,7 +231,7 @@ plugins:
     enabled: true
     options:
       title: 최근 변경
-      limit: 10
+      limit: 3
       showTags: false
       hideTagPages: true
       hideFolderPages: true
@@ -297,8 +297,6 @@ layout:
     folder:
       exclude:
         - reader-mode
-      positions:
-        right: []
     tag:
       exclude:
         - reader-mode
