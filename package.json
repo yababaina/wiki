@@ -12,6 +12,9 @@
     "url": "https://github.com/jackyzha0/quartz.git"
   },
   "scripts": {
+    "setup": "npm ci && npx quartz plugin install --from-config",
+    "dev": "npx quartz build --serve",
+    "sync": "npx quartz sync",
     "quartz": "./quartz/bootstrap-cli.mjs",
     "docs": "npx quartz build --serve -d docs",
     "check": "tsc --noEmit && npx prettier . --check",
