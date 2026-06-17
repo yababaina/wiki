@@ -2,4 +2,6 @@
 title: ECC
 ---
 
+ㅇㅇ
+
 ← [[cryptology/]]
