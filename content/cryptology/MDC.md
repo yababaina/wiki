@@ -2,4 +2,4 @@
 title: MDC
 ---
 
-← [[cryptology]]
+예: [[cryptology/SHA]], [[cryptology/MD5]]

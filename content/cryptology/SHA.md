@@ -2,4 +2,4 @@
 title: SHA
 ---
 
-← [[cryptology]]
+분류: [[cryptology/MDC]]

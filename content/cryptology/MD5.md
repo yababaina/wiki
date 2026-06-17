@@ -2,4 +2,4 @@
 title: MD5
 ---
 
-← [[cryptology]]
+분류: [[cryptology/MDC]]

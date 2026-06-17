@@ -2,4 +2,4 @@
 title: MAC
 ---
 
-← [[cryptology]]
+관련: [[cryptology/대칭키]], [[cryptology/HMAC]]

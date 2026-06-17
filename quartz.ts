@@ -5,6 +5,14 @@ registerCondition("index-only", (props) => props.fileData.slug === "index")
 ExternalPlugin.RecentNotes({
   filter: (file) => file.slug !== "404",
 })
+ExternalPlugin.Graph({
+  localGraph: {
+    removePages: ["cryptology/index"],
+    includeFolder: "cryptology",
+    highlightCurrentOnLoad: true,
+    focusOnHover: true,
+  },
+})
 const config = await loadQuartzConfig()
 export default config
 export const layout = await loadQuartzLayout()

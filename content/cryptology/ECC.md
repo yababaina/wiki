@@ -4,4 +4,4 @@ title: ECC
 
 ㅇㅇ
 
-← [[cryptology/]]
+관련: [[cryptology/공개키]]
