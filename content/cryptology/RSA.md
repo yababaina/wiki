@@ -2,4 +2,4 @@
 title: RSA
 ---
 
-관련: [[cryptology/공개키]]
+관련: [[cryptology/Public-Key]]
