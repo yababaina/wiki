@@ -1,6 +1,5 @@
 ---
-title: network
+title: Infrastructure
 ---
 
--[[NAT]]
--[[Firewall]]
+-[[HA]]
