@@ -1,5 +1,5 @@
 ---
-title: Nerwok
+title: Network
 ---
 
 -[[NAT]]
