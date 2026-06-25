@@ -96,10 +96,30 @@ article h1 + h2 {
 
 // # 소개 문단 다음 ##
 article h1 + p + h2 {
-  margin-top: 2.25rem;
+  margin-top: 2.5rem;
 }
 
 // ## 바로 다음 ###
 article h2 + h3 {
   margin-top: 1.75rem;
+}
+
+// 목록 다음 # 대제목 (동작 PDU 항목 → # PDU 종류 등)
+article ul + h1 {
+  margin-top: 2.75rem;
+}
+
+// 목록 다음 ## (PDU 하위 섹션 등)
+article ul + h2 {
+  margin-top: 2rem;
+}
+
+// 목록 다음 설명 문단
+article ul + p {
+  margin-top: 1.25rem;
+}
+
+// 문단 다음 # 대제목
+article p + h1 {
+  margin-top: 2.75rem;
 }
