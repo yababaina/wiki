@@ -71,9 +71,16 @@ ul.section-ul {
 }
 }
 
-// 인라인 코드(`...`) 배경 — 라이트 모드 대비 강화
+// 인라인 코드(`...`) — 라이트: 은은한 하늘빛 회색
 :root[saved-theme="light"] :not(pre) > code {
-  background: #d0d0d0;
+  background: #f2f6f9;
+  border: 1px solid rgba(40, 75, 99, 0.06);
+  color: var(--dark);
+}
+
+:root[saved-theme="dark"] :not(pre) > code {
+  background: rgba(132, 165, 157, 0.1);
+  border: 1px solid rgba(132, 165, 157, 0.16);
 }
 
 // 표 바로 다음 제목(h2) 여백
