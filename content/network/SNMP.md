@@ -118,5 +118,14 @@ SNMP로 주고받는 정보는 객체 단위로 정의되며, 이들의 집합 /
 - MIB 트리에서 객체 하나를 가리키는 고유 경로 (점으로 구분된 숫자열)
 - 예: `1.3.6.1.2.1.1.1.0` → `sysDescr` (시스템 설명) 인스턴스
 
-참고 글
-[https://itragdoll.tistory.com/43](https://itragdoll.tistory.com/43)
+## 참고
+
+### 입문 글
+
+- [SNMP란?](https://itragdoll.tistory.com/43) — Manager/Agent, PDU, MIB 등 개념 정리 참고
+
+### 표준 문서
+
+- [RFC 1157 — SNMPv1](https://www.rfc-editor.org/rfc/rfc1157)
+- [RFC 3410 — SNMPv3 소개](https://www.rfc-editor.org/rfc/rfc3410)
+- [RFC 2578 — SMIv2](https://www.rfc-editor.org/rfc/rfc2578)
