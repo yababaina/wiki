@@ -75,3 +75,8 @@ ul.section-ul {
 :root[saved-theme="light"] :not(pre) > code {
   background: #d0d0d0;
 }
+
+// 표 바로 다음 제목(h2) 여백
+.table-container + h2 {
+  margin-top: 2.5rem;
+}
