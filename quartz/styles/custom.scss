@@ -87,3 +87,19 @@ ul.section-ul {
 .table-container + h2 {
   margin-top: 2.5rem;
 }
+
+// # 제목 바로 다음 # / ## 블록
+article h1 + h1,
+article h1 + h2 {
+  margin-top: 2.75rem;
+}
+
+// # 소개 문단 다음 ##
+article h1 + p + h2 {
+  margin-top: 2.25rem;
+}
+
+// ## 바로 다음 ###
+article h2 + h3 {
+  margin-top: 1.75rem;
+}
