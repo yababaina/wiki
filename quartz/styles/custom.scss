@@ -70,3 +70,8 @@ ul.section-ul {
     }
 }
 }
+
+// 인라인 코드(`...`) 배경 — 라이트 모드 대비 강화
+:root[saved-theme="light"] :not(pre) > code {
+  background: #d0d0d0;
+}

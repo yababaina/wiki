@@ -90,7 +90,7 @@ SNMP는 `v1` → `v2c` → `v3` 순으로 발전했으며, **보안 모델**과 
 - `v1`/`v2c` 대비 DoS / 스니핑 / 비인가 설정 변경 위험을 크게 줄일 수 있음
 
 # MIB / SMI / OID
-SNMP로 주고받는 정보는 객체 단위로 정의되며, 이들의 집합 / 규칙을 `MIB` / `OID` / [[#SMI (Structure of Management Information)|SMI]]로 표현한다.
+SNMP로 주고받는 정보는 객체 단위로 정의되며, 이들의 집합 / 규칙을 `MIB` / `OID` / `SMI`로 표현한다.
 
 ## MIB (Management Information Base)
 
