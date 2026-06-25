@@ -181,3 +181,20 @@ article ul + p {
 article p + h1 {
   margin-top: 2.75rem;
 }
+
+// 콜아웃(접기 토글)과 위·아래 본문 간격
+// base.scss `li > * { margin: 0 }` 보다 우선
+.page article {
+  .callout {
+    margin-top: 0.65rem;
+    margin-bottom: 0.75rem;
+  }
+
+  li > p + .callout {
+    margin-top: 0.5rem;
+  }
+
+  li:has(> .callout) + li {
+    margin-top: 0.15rem;
+  }
+}

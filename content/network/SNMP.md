@@ -9,6 +9,8 @@ title: SNMP
 `SNMP`(*Simple Network Management Protocol*)란 IP 기반 네트워크 상의 각 호스트로부터 정기적으로 여러 관리 정보를 자동으로 수집하거나 실시간으로 상태를 모니터링 및 설정할 수 있는 **프로토콜**이다.
 
 시스템이나 네트워크 관리자로 하여금 원격으로 네트워크 장비를 모니터링하고 환경설정 등의 운영을 할 수 있도록 한다.
+`ICMP`(`ping` 등)만으로는 장비 상태 / 통계 / 원격 설정을 체계적으로 다루기 어려워 등장했다. 
+초기 `SGMP`에서 발전한 형태이며, SNMP 이전에는 SGMP, HIMS, CMIP/SMIS 등 NMS 관련 프로토콜도 있었으나 현재는 SNMP(`v2c/v3`)가 주류이다.
 
 OSI `Application` 계층이며 `UDP` 프로토콜을 사용한다.
 
@@ -22,6 +24,14 @@ OSI `Application` 계층이며 `UDP` 프로토콜을 사용한다.
 `Agent`는 관리 대상 시스템에 설치되어 필요한 정보를 [[#MIB (Management Information Base)|MIB]] 형태로 수집하고 `Manager`에게 전달해 주는 모듈이다.
 이벤트 발생 시 이를 `Manager` `162/UDP` 포트로 알리는 `Event Reporting` 방식을 사용한다.
 Listen 포트는 `161/UDP`를 사용한다.
+
+# 관리 영역
+
+SNMP로 Manager가 Agent(MIB)를 통해 다루는 정보는 대략 다음과 같다.
+
+- 구성 / 장비 관리: 시스템 정보, 인터페이스 up / down, 호스트명, uptime 등
+- 성능 관리: 트래픽 사용량, 에러율, 처리 / 지연 시간 등 통계
+- 보안 관리: [[#OID (Object Identifier)|OID]] 접근 제어
 
 # 동작
 
@@ -61,6 +71,9 @@ SNMP는 `v1` → `v2c` → `v3` 순으로 발전했으며, **보안 모델**과 
 
 - `RFC 1157` 기반의 최초 버전
 - `Community String`(`public`, `private` 등)으로 접근 제어 가능하지만 평문 전송이라 보안에 취약함
+  - `Community String`은 Agent와 Manager 사이 cleartext 공유 문자열(일종의 패스워드)
+  - RO(Read-Only): OID 읽기만 가능
+  - RW(Read-Write): OID 읽기 / 쓰기 가능, 설정 변경 위험
 - PDU: `Get`, `GetNext`, `Set`, `GetResponse`, `Trap`
 - 32비트 카운터 등 데이터 타입 / 기능이 제한적
 - 오래된 장비 / 프린터 등 레거시 환경에서 볼 수 있음
@@ -82,7 +95,7 @@ SNMP는 `v1` → `v2c` → `v3` 순으로 발전했으며, **보안 모델**과 
 
 - `Community String`을 사용하지 않고 `Username` + 보안 레벨로 접근 제어
 - `USM`(User-based Security Model): 인증 / 암호화 정책 정의
-- `VACM`(View-based Access Control Model): [[#OID (Object Identifier)|OID]] 단위 읽기 / 쓰기 권한 제어
+- `VACM`(View-based Access Control Model): OID 단위 읽기 / 쓰기 권한 제어
 - 보안 레벨
   - `noAuthNoPriv`: 인증 / 암호화 없음
   - `authNoPriv`: 인증만
@@ -108,6 +121,7 @@ SNMP로 주고받는 정보는 객체 단위로 정의되며, 이들의 집합 /
 | `SNMPv2-MIB` (`system` 그룹) | 호스트명, uptime, `sysContact` 등 |
 
 ## SMI (Structure of Management Information)
+
 - MIB에 어떤 객체를 어떤 타입 / 속성으로 정의할지 정하는 규칙
 - 객체 속성 예: 이름, 문법, `access`(`read-only` / `read-write`), `status`
 - `SMIv1`(`RFC 1155`), `SMIv2`(`RFC 2578`)
@@ -115,8 +129,30 @@ SNMP로 주고받는 정보는 객체 단위로 정의되며, 이들의 집합 /
 - 데이터 표기는 `ASN.1`, 실제 전송 시에는 `BER` 인코딩으로 직렬화
 
 ## OID (Object Identifier)
+
+```text
+1 (iso)
+└── 3 (org)
+    └── 6 (dod)
+        └── 1 (internet)
+            ├── 2 (mgmt)      → 1.3.6.1.2.1  표준 MIB (IF-MIB, system…)
+            ├── 4 (private)   → 1.3.6.1.4    OID 트리의 "private" 가지
+            │   └── 1 (enterprises) → 1.3.6.1.4.1  벤더 MIB (Cisco, HP…)
+            └── …
+```
+
 - MIB 트리에서 객체 하나를 가리키는 고유 경로 (점으로 구분된 숫자열)
-- 예: `1.3.6.1.2.1.1.1.0` → `sysDescr` (시스템 설명) 인스턴스
+  - 예: `1.3.6.1.2.1.1.1.0` → `sysDescr` (시스템 설명) 인스턴스
+  - Fully qualified OID: 루트(`.`)부터 전체 경로
+    - 예 `.1.3.6.1.2.1.1.1.0`
+  - Relative OID: `1.3.6.1.4.1`(enterprise) 이하 등 일부만 표기하는 형태
+
+### 객체 종류
+
+| 종류 | 설명 | 예 |
+| ------ | ------ | ------|
+| Scalar | 인스턴스 1개 | `sysDescr` -> `...1.1.1.0` |
+| Table | 행 / 열(index + column)로 여러 인스턴스 | `ifTable`(IF-MIB) |
 
 ## 참고
 
