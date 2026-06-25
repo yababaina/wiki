@@ -71,14 +71,72 @@ ul.section-ul {
 }
 }
 
-// 인라인 코드(`...`) — 라이트: 은은한 하늘빛 회색
-:root[saved-theme="light"] :not(pre) > code {
-  background: #f2f6f9;
-  border: 1px solid rgba(40, 75, 99, 0.06);
-  color: var(--dark);
+// 인라인 코드(`...`) + 본문 텍스트 통일 (평문 · 목록 · 표)
+.page article {
+  // Obsidian preview가 p에만 system-ui 폰트 적용 → li와 톤 불일치
+  .markdown-preview-view.markdown-rendered p,
+  .markdown-preview-view p,
+  p,
+  li,
+  td,
+  li p {
+    color: var(--darkgray);
+    font-family: var(--bodyFont);
+    font-weight: $normalWeight;
+  }
+
+  em {
+    color: var(--darkgray);
+  }
+
+  p > strong,
+  li > strong,
+  td > strong,
+  p strong,
+  li strong,
+  td strong {
+    color: var(--darkgray);
+    font-weight: $semiBoldWeight;
+  }
+
+  th {
+    font-family: var(--bodyFont);
+    color: var(--darkgray);
+    font-weight: $semiBoldWeight;
+  }
+
+  // base.scss `code { color: --dark }` 보다 우선
+  :not(pre) > code {
+    color: var(--darkgray);
+    font-weight: $normalWeight;
+    font-size: 0.95em;
+  }
+
+  // wikilink: 본문과 톤 맞추되 살짝만 구분
+  a.internal {
+    font-weight: $normalWeight;
+    color: var(--darkgray);
+    background-color: rgba(40, 75, 99, 0.06);
+    text-decoration: underline;
+    text-decoration-color: rgba(40, 75, 99, 0.22);
+    text-underline-offset: 2px;
+  }
+
+  .table-container > table {
+    font-size: 1rem;
+
+    & > * {
+      line-height: 1.6rem;
+    }
+  }
 }
 
-:root[saved-theme="dark"] :not(pre) > code {
+:root[saved-theme="light"] .page article :not(pre) > code {
+  background: #f2f6f9;
+  border: 1px solid rgba(40, 75, 99, 0.06);
+}
+
+:root[saved-theme="dark"] .page article :not(pre) > code {
   background: rgba(132, 165, 157, 0.1);
   border: 1px solid rgba(132, 165, 157, 0.16);
 }
